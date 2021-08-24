@@ -15,21 +15,45 @@ It has been known that applying certain image transformations (like sliding left
 
 2- CPU or NVIDIA GPU + CUDA CuDNN (GPU is recommended for faster inversion)
 
+---
 
 # Install dependencies
 In this repo, a pretrained biggan in a specified library
 ```python
 pip install torch torchvision matplotlib lpips numpy nltk cv2 pytorch-pretrained-biggan
 ```
+---
 
 # Training
 #provide image to work on
 ```python
 python train.py --image_path '/image.rgb' --loss ['l1','lpips_alexnet'] --transforms ['zoom','slide_left','slide_right','slide_upward','slide_downward'] --num_epochs 2000 --num_samples 6 --learning_rate 0.007 
 ```
+---
 
 # How does the optimization work
 In the very beginning, a random input is chosen. Later the model is frozen and multiple backward propagations happen. The loss function in the back propagation tries to make the produced image and the target image as clos as possible. Since the model is frozen, the gradient updates only changes the latent input until the produced image matches a close representation in the latent space to the target image. 
 
+---
+
 # Truncation trick
 Truncation trick is first introduced in the BigGan paper (https://arxiv.org/abs/1809.11096). Since the random input is chosen from a normal distribution, most of the training happens for random input values that range from (-1 to 1). In the inversion task, the latent input is truncated after each gradient update: (values that are less than -1 or more than 1 are set to a random value). This ensures the realisticity of the image as well as help avoid local minima in the generator manifold.
+
+---
+
+# Loss functions
+In this repo, two loss functions are added together
+
+# Pixel-wise loss function
+There are multiple pixel-wise loss function that can be chosen for this task, but after multiple trials, L1 loss worked best. The reason behind this is because the gradient in the L1 loss doesn't depend on the value of the loss itself. Thus, the training becomes more consistent and avoids asymptotic behaviours.
+
+
+<img src="https://render.githubusercontent.com/render/math?math=\sum_{n=1}^{N}\left|y_{true}-y_{predicted}\right|">
+
+# Feature-wise loss function (LPIPS loss)
+This loss function cares more about the features of the produced image by applying a norm difference between the internal convolutional features of a pretrained when applied on both the real and the fake image. For the sake of the speed, alexnet is applied since VGG net is much more complicated. You can find more about lpips loss in this paper (https://arxiv.org/abs/1801.03924)
+
+![lpips](https://user-images.githubusercontent.com/47930821/130575694-50b818d2-f0ff-4b09-b662-341becfa18a7.jpg)
+
+
+
