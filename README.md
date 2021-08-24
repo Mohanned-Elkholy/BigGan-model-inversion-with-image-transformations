@@ -58,7 +58,7 @@ There are multiple pixel-wise loss function that can be chosen for this task, bu
 
 <img src="https://render.githubusercontent.com/render/math?math=\sum_{n=1}^{N}\left|y_{true}-y_{predicted}\right|">
 
-# Feature-wise loss function (LPIPS loss)
+# Feature-wise loss function (LPIPS loss or Perceptual loss)
 This loss function cares more about the features of the produced image by applying a norm difference between the internal convolutional features of a pretrained when applied on both the real and the fake image. For the sake of the speed, alexnet is applied since VGG net is much more complicated. You can find more about lpips loss in this paper (https://arxiv.org/abs/1801.03924)
 
 ![lpips](https://user-images.githubusercontent.com/47930821/130575694-50b818d2-f0ff-4b09-b662-341becfa18a7.jpg)
