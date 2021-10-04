@@ -32,27 +32,6 @@ In this repo, BigGan is used to apply the model inversion. Since it is a conditi
 ![inception](https://user-images.githubusercontent.com/47930821/130579434-678b3445-f432-42b1-96b5-7d4d7b5868bb.png)
 
 
-# Training
-provide image to work on: I provided a dog image in the input folder but you can replace it. 
-Run this script on a jupiter notebook to start the inversion. (GPU is required, and it takes ~3 mins to apply it on all the transformations.
-```python
-!pip install torch 
-!pip install torchvision
-!pip install matplotlib 
-!pip install pytorch-pretrained-biggan
-!pip install lpips
-!pip install numpy
-!pip install nltk
-!pip install cv2
-!git clone https://github.com/Mohanned-Elkholy/BigGan-model-inversion-with-image-transformations
-%cd /content/BigGan-model-inversion-with-image-transformations
-!python main.py --image_path input_images/dog.png   
-```
-You can also run the colab notebook provided here.
-
----
-
-
 # How does the optimization work
 In the very beginning, a random input is chosen. Later the model is frozen and multiple backward propagations happen. The loss function in the back propagation tries to make the produced image and the target image as clos as possible. Since the model is frozen, the gradient updates only changes the latent input until the produced image matches a close representation in the latent space to the target image. 
 
@@ -75,6 +54,28 @@ There are multiple pixel-wise loss function that can be chosen for this task, bu
 This loss function cares more about the features of the produced image by applying a norm difference between the internal convolutional features of a pretrained when applied on both the real and the fake image. For the sake of the speed, alexnet is applied since VGG net is much more complicated. You can find more about lpips loss in this paper (https://arxiv.org/abs/1801.03924)
 
 ![lpips](https://user-images.githubusercontent.com/47930821/130575694-50b818d2-f0ff-4b09-b662-341becfa18a7.jpg)
+
+---
+
+# Training
+provide image to work on: I provided a dog image in the input folder but you can replace it. 
+Run this script on a jupiter notebook to start the inversion. (GPU is required, and it takes ~3 mins to apply it on all the transformations.
+```python
+!pip install torch 
+!pip install torchvision
+!pip install matplotlib 
+!pip install pytorch-pretrained-biggan
+!pip install lpips
+!pip install numpy
+!pip install nltk
+!pip install cv2
+!git clone https://github.com/Mohanned-Elkholy/BigGan-model-inversion-with-image-transformations
+%cd /content/BigGan-model-inversion-with-image-transformations
+!python main.py --image_path input_images/dog.png   
+```
+You can also run the colab notebook provided in the repo, or you can open this link: https://colab.research.google.com/drive/1nMZM4rczd5oLOQXyqN2u1yLx86ex30of?usp=sharing.
+
+---
 
 
 
