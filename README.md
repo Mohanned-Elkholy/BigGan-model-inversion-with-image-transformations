@@ -6,7 +6,7 @@ This the torch implementation of (https://arxiv.org/abs/1907.07171). Model inver
 ---
 
 # Advanced data augmentation using transformations in the latent space
-It has been known that applying certain image transformations (like sliding left or right, center crop,..etc) are usually discrete and the image as a whole lacks continuity in some filters (like zero-padding). Applying this transformations in the latent space, however, is different because generative models are trained to produce realistic images. Thus, more ralistic image augmentation will happen in the latent space. In this repo, multiple transformations (sliding left, right, upwards, downwards and zooming) are done to a given image in the latent space of the BigGan generator. This data augmentation technique can be crucial in improving the accuracy of image classifiers. 
+It has been known that applying certain image transformations (like sliding left or right, up or down,..etc) are usually discrete and the image as a whole lacks continuity in some filters (like zero-padding). Applying this transformations in the latent space, however, is different because generative models are trained to produce realistic images. Thus, more ralistic image augmentation will happen in the latent space. In this repo, multiple transformations (sliding left, right, upwards, downwards and zooming) are done to a given image in the latent space of the BigGan generator. This data augmentation technique can be crucial in improving the accuracy of image classifiers. 
 
 #add GIF here
 
@@ -33,11 +33,26 @@ In this repo, BigGan is used to apply the model inversion. Since it is a conditi
 
 
 # Training
-#provide image to work on
+provide image to work on: I provided a dog image in the input folder but you can replace it. 
+Run this script on a jupiter notebook to start the inversion. (GPU is required, and it takes ~3 mins to apply it on all the transformations.
 ```python
-python train.py --image_path '/image.rgb' --loss ['l1','lpips_alexnet'] --transforms ['zoom','slide_left','slide_right','slide_upward','slide_downward'] --num_epochs 2000 --num_samples 6 --learning_rate 0.007 
+import os
+!pip install torch 
+!pip install torchvision
+!pip install matplotlib 
+!pip install pytorch-pretrained-biggan
+!pip install lpips
+!pip install numpy
+!pip install nltk
+!pip install cv2
+!git clone https://github.com/Mohanned-Elkholy/BigGan-model-inversion-with-image-transformations
+%cd BigGan-model-inversion-with-image-transformations
+!python /content/BigGan-model-inversion-with-image-transformations/main.py --image_path /content/BigGan-model-inversion-with-image-transformations/input_images/dog.png 
 ```
+You can also run the colab notebook provided here.
+
 ---
+
 
 # How does the optimization work
 In the very beginning, a random input is chosen. Later the model is frozen and multiple backward propagations happen. The loss function in the back propagation tries to make the produced image and the target image as clos as possible. Since the model is frozen, the gradient updates only changes the latent input until the produced image matches a close representation in the latent space to the target image. 
