@@ -1,0 +1,8 @@
+torch 
+torchvision
+matplotlib 
+pytorch-pretrained-biggan==0.1.1
+lpips
+numpy
+nltk
+cv2
