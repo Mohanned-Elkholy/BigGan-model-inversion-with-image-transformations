@@ -19,13 +19,6 @@ It has been known that applying certain image transformations (like sliding left
 
 ---
 
-# Install dependencies
-In this repo, a pretrained biggan in a specified library
-```python
-pip install torch torchvision matplotlib lpips numpy nltk cv2 pytorch-pretrained-biggan
-```
----
-
 # Classifying the input image
 In this repo, BigGan is used to apply the model inversion. Since it is a conditional GAN that is trained on imagenet, the category of the image should be known before inverting the image. Therefore a classifier is used to assign a class to the image. In this repo, a state of the art Inception-V3 net is used. You can read more about inception net in this paper (https://arxiv.org/abs/1512.00567v3)
 
