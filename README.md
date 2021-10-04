@@ -77,5 +77,18 @@ You can also run the colab notebook provided in the repo, or you can open this l
 
 ---
 
+# Results // Left image: inverted image // Right image: the original image
 
+Without transformation
+
+
+![image](https://user-images.githubusercontent.com/47930821/135885778-2bb1d281-248c-4961-85a3-caf5b0d74ca1.png)
+
+Down transformation
+
+![image](https://user-images.githubusercontent.com/47930821/135886008-274a720d-7018-4981-8f50-5065a1cfe243.png)
+
+Right transformation
+
+![image](https://user-images.githubusercontent.com/47930821/135886300-659b5d6e-1d5c-486e-9cca-a168949b15bf.png)
 
