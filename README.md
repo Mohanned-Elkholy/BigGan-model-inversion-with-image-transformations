@@ -36,7 +36,6 @@ In this repo, BigGan is used to apply the model inversion. Since it is a conditi
 provide image to work on: I provided a dog image in the input folder but you can replace it. 
 Run this script on a jupiter notebook to start the inversion. (GPU is required, and it takes ~3 mins to apply it on all the transformations.
 ```python
-import os
 !pip install torch 
 !pip install torchvision
 !pip install matplotlib 
@@ -46,8 +45,8 @@ import os
 !pip install nltk
 !pip install cv2
 !git clone https://github.com/Mohanned-Elkholy/BigGan-model-inversion-with-image-transformations
-%cd BigGan-model-inversion-with-image-transformations
-!python /content/BigGan-model-inversion-with-image-transformations/main.py --image_path /content/BigGan-model-inversion-with-image-transformations/input_images/dog.png 
+%cd /content/BigGan-model-inversion-with-image-transformations
+!python main.py --image_path input_images/dog.png   
 ```
 You can also run the colab notebook provided here.
 
