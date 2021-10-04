@@ -59,7 +59,7 @@ This loss function cares more about the features of the produced image by applyi
 
 # Training
 provide image to work on: I provided a dog image in the input folder but you can replace it. 
-Run this script on a jupiter notebook to start the inversion. (GPU is required, and it takes ~3 mins to apply it on all the transformations.
+Run this script on a colab notebook to start the inversion. (GPU is required, and it takes ~3 mins to apply it on all the transformations.
 ```python
 !pip install torch 
 !pip install torchvision
